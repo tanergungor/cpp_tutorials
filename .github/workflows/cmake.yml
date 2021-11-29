@@ -32,7 +32,7 @@ jobs:
 
     - name: Documentation
       # Build your program with the given configuration
-      run: apt-get update & apt-get install doxygen & doxygen doxygen.conf
+      run: sudo apt-get update & sudo apt-get install doxygen & doxygen doxygen.conf
 
     - name: Test
       working-directory: ${{github.workspace}}/build

@@ -34,3 +34,22 @@ You should run the following commands to compile the project:
 Then run the application:
 
 > ./main
+
+
+<h2>Generating Doxygen Documentation</h2>
+
+If <code>doxygen.conf</code> file does not exist, then create it before generate the documentation.
+
+> doxygen -g doxygen.conf
+
+Change the followings:
+
+<code>PROJECT_NAME           = "CPP Tutorials"</code>
+
+<code>OUTPUT_DIRECTORY       = doc</code>
+
+<code>RECURSIVE              = YES</code>
+
+You should run the following commands to generate the doxygen documentation:
+
+> doxygen doxygen.conf

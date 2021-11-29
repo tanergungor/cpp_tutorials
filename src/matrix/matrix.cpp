@@ -21,11 +21,11 @@ const std::vector<uint32_t> Matrix::getData() {
 }
 
 void Matrix::setValueByIndex(const uint32_t column_index, const uint32_t row_index, const uint32_t value) {
-    data[((row_index - 1) * this->column_index) + (column_index - 1)] = value;
+    data[((row_index - 1) * this->column_size) + (column_index - 1)] = value;
 }
 
 const uint32_t Matrix::getValueByIndex(const uint32_t column_index, const uint32_t row_index) {
-    return data[((row_index - 1) * this->column_index) + (column_index - 1)];
+    return data[((row_index - 1) * this->column_size) + (column_index - 1)];
 }
 
 void Matrix::displayData() {

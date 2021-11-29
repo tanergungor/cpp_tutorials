@@ -1,10 +1,11 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 3.6)
 
 project (main)
 
 set (CMAKE_VERBOSE_MAKEFILE ON)
 
 add_subdirectory (hello_world)
+add_subdirectory (matrix)
 
 # Adds an executable target called <name> to be built from the source files listed in the 
 # command invocation.
@@ -16,6 +17,7 @@ add_executable (${PROJECT_NAME} main.cpp)
 # to, but are not made part of the link interface. Libraries following INTERFACE are appended 
 # to the link interface and are not used for linking <target>.
 target_link_libraries (${PROJECT_NAME} PUBLIC hello_world)
+target_link_libraries (${PROJECT_NAME} PUBLIC matrix)
 
 # DESTINATION specifies the directory on disk to which a file will be installed. Arguments 
 # can be relative or absolute paths.

@@ -10,7 +10,6 @@ int main()
     Matrix<int32_t> m_1 {cols, rows};
     Matrix<int32_t> m_2 (cols, rows);
     Matrix<int32_t> m_3 (cols, rows);
-    Matrix<double> m_4 (cols, rows);
 
     std::cout << "Matrix m_1 cols: " << m_1.getColumnSize() << std::endl;
     std::cout << "Matrix m_1 rows: " << m_1.getRowSize() << std::endl;
@@ -18,7 +17,11 @@ int main()
     m_1.setValueByIndex(0, 0, 1);
     m_1.setValueByIndex(0, 1, 2);
     m_1.setValueByIndex(0, 2, 3);
+    m_1.setValueByIndex(2, 2, 2);
 
+    m_2.setValueByIndex(0, 0, 1);
+    m_2.setValueByIndex(0, 1, 2);
+    m_2.setValueByIndex(0, 2, 3);
     m_2.setValueByIndex(2, 2, 9);
     std::cout << "Matrix m_1(3, 3): " << m_1.getValueByIndex(3, 3) << std::endl;
 
@@ -32,9 +35,7 @@ int main()
     m_3 = m_1 + m_2;
     m_3.displayData();
 
-
-    
-    //m_1 += m_2
-    //std::cout << "m_1 = m_1 + m_2: " << std::endl;
-    //m_1.displayData();
+    std::cout << "m_3 = m_1 * m_2: " << std::endl;
+    m_3.dotProduct(m_1);
+    m_3.displayData();
 }

@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 
-template<typename T>
+template<class T>
 class Matrix {
 
     private:
@@ -55,8 +55,10 @@ class Matrix {
         //! Displays the array content.
         void displayData();
 
-        const Matrix<T> operator + (const Matrix<T>& m);
-        const Matrix<T> operator - (const Matrix<T>& m);
+        void dotProduct(const Matrix<T>& m);
+        void dotQuotient(const Matrix<T>& m);
+        Matrix<T> operator+(const Matrix<T>& m);
+        Matrix<T> operator-(const Matrix<T>& m);
 };
 
 #endif

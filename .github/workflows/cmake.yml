@@ -36,9 +36,6 @@ jobs:
       # Build your program with the given configuration
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
 
-    - name: Install
-      run: cmake --install ${{github.workspace}}/bin
-
     - name: Documentation
       # Build your program with the given configuration
       run: doxygen doxygen.conf
@@ -46,4 +43,4 @@ jobs:
     - name: Test
       working-directory: ${{github.workspace}}/build
       # Execute GTests.
-      run: cd bin && ./test_main
+      run: ./test/test_main

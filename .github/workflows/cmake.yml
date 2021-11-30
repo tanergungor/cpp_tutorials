@@ -36,6 +36,9 @@ jobs:
       # Build your program with the given configuration
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
 
+    - name: Install
+      run: make install
+
     - name: Documentation
       # Build your program with the given configuration
       run: doxygen doxygen.conf

@@ -1,9 +1,5 @@
-# Ignore the build and lib directories
-build/*
-lib/*
-
-# Ignore any executables
 bin/*
-
-# Ignore any documentation
+build/*
 doc/*
+lib/*
+.vscode

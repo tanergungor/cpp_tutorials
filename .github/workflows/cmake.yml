@@ -24,7 +24,7 @@ jobs:
     - name: Update the System
       run: sudo apt-get update
 
-    - name: Install Packages
+    - name: Install Dependencies
       run: sudo apt-get install doxygen-latex doxygen-doc doxygen-gui graphviz
 
     - name: Configure CMake
@@ -37,7 +37,7 @@ jobs:
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
 
     - name: Install
-      run: cmake --install .
+      run: cmake --install ${{github.workspace}}/bin
 
     - name: Documentation
       # Build your program with the given configuration

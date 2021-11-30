@@ -7,9 +7,10 @@ int main()
 
     const uint32_t cols = 3U;
     const uint32_t rows = 3U;
-    Matrix m_1 {cols, rows};
-    Matrix m_2 (cols, rows);
-    Matrix m_3 (cols, rows);
+    Matrix<int32_t> m_1 {cols, rows};
+    Matrix<int32_t> m_2 (cols, rows);
+    Matrix<int32_t> m_3 (cols, rows);
+    Matrix<double> m_4 (cols, rows);
 
     std::cout << "Matrix m_1 cols: " << m_1.getColumnSize() << std::endl;
     std::cout << "Matrix m_1 rows: " << m_1.getRowSize() << std::endl;

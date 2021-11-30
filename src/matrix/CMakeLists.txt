@@ -2,6 +2,8 @@ cmake_minimum_required (VERSION 3.6)
 
 project (matrix)
 
+set (CMAKE_VERBOSE_MAKEFILE ON)
+set (CMAKE_CXX_STANDARD 14)
 set (CMAKE_CXX_COMPILER_WORKS ON)
 set (CMAKE_CXX_COMPILER g++ CACHE STRING "C++ compiler" FORCE)
 

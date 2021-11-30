@@ -1,8 +1,10 @@
+#ifndef MATRIX_H
+#define MATRIX_H
+
 #include <iostream>
-#include <iomanip>
-#include <cassert>
 #include <vector>
 
+template<typename T>
 class Matrix {
 
     private:
@@ -11,7 +13,7 @@ class Matrix {
         //! Row number of the matrix.
         uint32_t row_size;
         //! Data vector of the matrix.
-        std::vector<int32_t> data;
+        std::vector<T> data;
         
     public:
         Matrix(const uint32_t column_size, const uint32_t row_size);
@@ -32,27 +34,29 @@ class Matrix {
         /*!
         \return The data vetor of the matrix.
         */
-        const std::vector<int32_t> getData();
+        const std::vector<T> getData();
 
-        //! Sets the valeu in the specified index.
+        //! Sets the value in the specified index.
         /*!
         \param column_index an integer column index.
         \param row_index an integer row index.
-        \param value an integer value that is going to be set.
+        \param value a template-typed value that is going to be set.
         */
-        void setValueByIndex(const uint32_t column_index, const uint32_t row_index, const int32_t value);
+        void setValueByIndex(const uint32_t column_index, const uint32_t row_index, const T value);
 
         //! Returns the value in the specified index.
         /*!
         \param column_index an integer column index.
         \param row_index an integer row index.
-        \return The value in the specified index.
+        \return The template-typed value in the specified index.
         */
-        const int32_t getValueByIndex(const uint32_t column_index, const uint32_t row_index);
+        const T getValueByIndex(const uint32_t column_index, const uint32_t row_index);
 
         //! Displays the array content.
         void displayData();
 
-        Matrix operator + (const Matrix& m);
-        Matrix operator - (const Matrix& m);
+        const Matrix<T> operator + (const Matrix<T>& m);
+        const Matrix<T> operator - (const Matrix<T>& m);
 };
+
+#endif

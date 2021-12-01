@@ -17,6 +17,16 @@ class Matrix {
         
     public:
         Matrix(const uint32_t column_size, const uint32_t row_size);
+        //! Copy Constructor
+        Matrix(const Matrix& m);
+        //! Copy Assignment
+        Matrix<T>& operator=(const Matrix<T>& m);
+        //! Move Constructor
+        Matrix(Matrix<T>&& m);
+        //! Move Assignment
+        Matrix<T>& operator= (Matrix<T>&&);
+
+        ~Matrix();
 
         //! Returns the column number of the matrix.
         /*!
@@ -57,8 +67,9 @@ class Matrix {
 
         void dotProduct(const Matrix<T>& m);
         void dotQuotient(const Matrix<T>& m);
-        Matrix<T> operator+(const Matrix<T>& m);
-        Matrix<T> operator-(const Matrix<T>& m);
+        
+        Matrix<T> operator+(const Matrix<T>& m) const;
+        Matrix<T> operator-(const Matrix<T>& m) const;
 };
 
 #endif

@@ -16,7 +16,11 @@ class Matrix {
         std::vector<T> data;
         
     public:
+        //! Constructors
+        Matrix() = delete; 
         Matrix(const uint32_t column_size, const uint32_t row_size);
+        // TODO: add a constructor which initialize the data vector with user specified value
+        Matrix(const uint32_t column_size, const uint32_t row_size, const std::vector<T> data);
         //! Copy Constructor
         Matrix(const Matrix& m);
         //! Copy Assignment
@@ -25,28 +29,19 @@ class Matrix {
         Matrix(Matrix<T>&& m);
         //! Move Assignment
         Matrix<T>& operator= (Matrix<T>&&);
-
+        //! Destructor
         ~Matrix();
 
         //! Returns the column number of the matrix.
-        /*!
-        \return The column number of the matrix.
-        */
         const uint32_t getColumnSize();
 
         //! Returns the row number of the matrix.
-        /*!
-        \return The row number of the matrix.
-        */
         const uint32_t getRowSize();
 
-        //! Returns the data vetor of the matrix.
-        /*!
-        \return The data vetor of the matrix.
-        */
+        //! Returns the data vector of the matrix.
         const std::vector<T> getData();
 
-        //! Sets the value in the specified index.
+        //! Sets the value in the specified index of data.
         /*!
         \param column_index an integer column index.
         \param row_index an integer row index.
@@ -54,7 +49,7 @@ class Matrix {
         */
         void setValueByIndex(const uint32_t column_index, const uint32_t row_index, const T value);
 
-        //! Returns the value in the specified index.
+        //! Returns the value in the specified index of data.
         /*!
         \param column_index an integer column index.
         \param row_index an integer row index.
@@ -65,11 +60,15 @@ class Matrix {
         //! Displays the array content.
         void displayData();
 
-        void dotProduct(const Matrix<T>& m);
-        void dotQuotient(const Matrix<T>& m);
+        void dotProduct(const Matrix<T>& rhs);
+        void dotQuotient(const Matrix<T>& rhs);
         
-        Matrix<T> operator+(const Matrix<T>& m) const;
-        Matrix<T> operator-(const Matrix<T>& m) const;
+        //! Operator+ overloading
+        Matrix<T> operator+(const Matrix<T>& rhs) const;
+        //! Operator- overloading
+        Matrix<T> operator-(const Matrix<T>& rhs) const;
+        //! Operator== overloading
+        bool operator==(const Matrix<T>& rhs) const;
 };
 
 #endif

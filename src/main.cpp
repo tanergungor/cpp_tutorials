@@ -5,10 +5,15 @@ int main()
 {
     hello_world();
 
+    const std::vector<int32_t> data = {1, 2, 3, 4, 5, 6, 7, 8, 9};
     const uint32_t cols = 3U;
     const uint32_t rows = 3U;
+    Matrix<int32_t> m_0 {cols, rows, data};
     Matrix<int32_t> m_1 {cols, rows};
     Matrix<int32_t> m_2 (cols, rows);
+
+    std::cout << "m_0: " << std::endl;
+    m_0.displayData();
 
     std::cout << "Matrix m_1 cols: " << m_1.getColumnSize() << std::endl;
     std::cout << "Matrix m_1 rows: " << m_1.getRowSize() << std::endl;
@@ -68,7 +73,6 @@ int main()
     std::cout << "m_6(m_2): " << std::endl;
     Matrix<int32_t> m_6(m_2);
     m_6.displayData();
-
     std::cout << "Copy Assignment" << std::endl;
     std::cout << "m_6 = m_1: " << std::endl;
     m_6 = m_1;

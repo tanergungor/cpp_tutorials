@@ -1,55 +1,67 @@
+#include "matrix.h"
+
 #include <cassert>
 #include <iomanip>
-
-#include "matrix.h"
 
 template class Matrix<int32_t>;
 
 template<class T>
 Matrix<T>::Matrix(const uint32_t column_size, const uint32_t row_size) : column_size(column_size), row_size(row_size) {
-    const uint32_t matrix_size = (column_size * row_size);
-    data.reserve(matrix_size);
-    for(uint32_t i = 0U; i < matrix_size; ++i) {
-        data[i] = 0;
+    data.reserve(column_size * row_size);
+    for(auto& c_data : data) {
+        c_data = 0;
     }
 }
 
 template<class T>
-Matrix<T>::Matrix(const Matrix<T>& m) {
-    column_size = m.column_size;
-    row_size = m.row_size;
-    const uint32_t matrix_size = (m.column_size * m.row_size);
+Matrix<T>::Matrix(const uint32_t column_size, const uint32_t row_size, const std::vector<T> data) : column_size(column_size), row_size(row_size), data(data) {
+    // TODO: check the size of the matrix and input data
+}
+
+template<class T>
+Matrix<T>::Matrix(const Matrix<T>& rhs) {
+    assert(column_size == rhs.column_size);
+    assert(row_size == rhs.row_size);
+    column_size = rhs.column_size;
+    row_size = rhs.row_size;
+    const uint32_t matrix_size = (rhs.column_size * rhs.row_size);
     data.reserve(matrix_size);
     for(uint32_t i = 0U; i < matrix_size; ++i) {
-        data[i] = m.data[i];
+        data[i] = rhs.data[i];
     }
 }
 
 template<class T>
-Matrix<T>& Matrix<T>::operator=(const Matrix<T>& m) {
-    this->column_size = m.column_size;
-    this->row_size = m.row_size;
-    const uint32_t matrix_size = (m.column_size * m.row_size);
+Matrix<T>& Matrix<T>::operator=(const Matrix<T>& rhs) {
+    assert(column_size == rhs.column_size);
+    assert(row_size == rhs.row_size);
+    this->column_size = rhs.column_size;
+    this->row_size = rhs.row_size;
+    const uint32_t matrix_size = (rhs.column_size * rhs.row_size);
     for(uint32_t i = 0U; i < matrix_size; ++i) {
-        this->data[i] = m.data[i];
+        this->data[i] = rhs.data[i];
     }
     return *this;
 }
 
 // TODO: https://www.cplusplus.com/doc/tutorial/classes2/#:~:text=Move%20constructor%20and%20assignment
 template<class T>
-Matrix<T>::Matrix(Matrix<T>&& m) {
-    column_size = m.column_size;
-    row_size = m.row_size;
-    data = m.data;
+Matrix<T>::Matrix(Matrix<T>&& rhs) {
+    assert(column_size == rhs.column_size);
+    assert(row_size == rhs.row_size);
+    column_size = rhs.column_size;
+    row_size = rhs.row_size;
+    data = rhs.data;
 }
 
 // TODO: https://www.cplusplus.com/doc/tutorial/classes2/#:~:text=Move%20constructor%20and%20assignment
 template<class T>
-Matrix<T>& Matrix<T>::operator=(Matrix<T>&& m) {
-    column_size = m.column_size;
-    row_size = m.row_size;
-    data = m.data;
+Matrix<T>& Matrix<T>::operator=(Matrix<T>&& rhs) {
+    assert(column_size == rhs.column_size);
+    assert(row_size == rhs.row_size);
+    column_size = rhs.column_size;
+    row_size = rhs.row_size;
+    data = rhs.data;
     return *this;
 }
 
@@ -100,45 +112,62 @@ void Matrix<T>::displayData() {
 }
 
 template<class T>
-void Matrix<T>::dotProduct(const Matrix<T>& m) {
-    assert(column_size == m.column_size);
-    assert(row_size == m.row_size);
+void Matrix<T>::dotProduct(const Matrix<T>& rhs) {
+    assert(column_size == rhs.column_size);
+    assert(row_size == rhs.row_size);
     const uint32_t matrix_size = (column_size * row_size);
     for(uint32_t i = 0U; i < matrix_size; ++i) {
-        data[i] *= m.data[i];
+        data[i] *= rhs.data[i];
     }
 }
 
 template<class T>
-void Matrix<T>::dotQuotient(const Matrix<T>& m) {
-    assert(column_size == m.column_size);
-    assert(row_size == m.row_size);
+void Matrix<T>::dotQuotient(const Matrix<T>& rhs) {
+    assert(column_size == rhs.column_size);
+    assert(row_size == rhs.row_size);
     const uint32_t matrix_size = (column_size * row_size);
     for(uint32_t i = 0U; i < matrix_size; ++i) {
-        data[i] /= m.data[i];
+        data[i] /= rhs.data[i];
     }
 }
 
 template<class T>
-Matrix<T> Matrix<T>::operator+(const Matrix<T>& m) const {
-    assert(column_size == m.column_size);
-    assert(row_size == m.row_size);
-    Matrix<T> result {m.column_size, m.row_size};
+Matrix<T> Matrix<T>::operator+(const Matrix<T>& rhs) const {
+    assert(column_size == rhs.column_size);
+    assert(row_size == rhs.row_size);
+    Matrix<T> result {rhs.column_size, rhs.row_size};
     const uint32_t matrix_size = (column_size * row_size);
     for(uint32_t i = 0U; i < matrix_size; ++i) {
-        result.data[i] = data[i] + m.data[i];
+        result.data[i] = data[i] + rhs.data[i];
     }
     return result;
 }
 
 template<class T>
-Matrix<T> Matrix<T>::operator-(const Matrix<T>& m) const {
-    assert(column_size == m.column_size);
-    assert(row_size == m.row_size);
-    Matrix<T> result {m.column_size, m.row_size};
+Matrix<T> Matrix<T>::operator-(const Matrix<T>& rhs) const {
+    assert(column_size == rhs.column_size);
+    assert(row_size == rhs.row_size);
+    Matrix<T> result {rhs.column_size, rhs.row_size};
     const uint32_t matrix_size = (column_size * row_size);
     for(uint32_t i = 0U; i < matrix_size; ++i) {
-        result.data[i] = data[i] - m.data[i];
+        result.data[i] = data[i] - rhs.data[i];
     }
     return result;
+}
+
+template<class T>
+bool Matrix<T>::operator==(const Matrix<T>& rhs) const {
+    if (this->column_size != rhs.column_size) {
+        return false;
+    }
+    if (this->row_size != rhs.row_size) {
+        return false;
+    }
+    const uint32_t matrix_size = (rhs.column_size * rhs.row_size);
+    for(uint32_t i = 0U; i < matrix_size; ++i) {
+        if (this->data[i] != rhs.data[i]) {
+            return false;
+        }
+    }
+    return true;
 }

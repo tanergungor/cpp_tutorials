@@ -21,6 +21,8 @@ class Matrix {
         Matrix(const uint32_t column_size, const uint32_t row_size);
         // TODO: add a constructor which initialize the data vector with user specified value
         Matrix(const uint32_t column_size, const uint32_t row_size, const std::vector<T> data);
+        //! Destructor
+        ~Matrix();
         //! Copy Constructor
         Matrix(const Matrix& m);
         //! Copy Assignment
@@ -29,8 +31,6 @@ class Matrix {
         Matrix(Matrix<T>&& m);
         //! Move Assignment
         Matrix<T>& operator= (Matrix<T>&&);
-        //! Destructor
-        ~Matrix();
 
         //! Returns the column number of the matrix.
         const uint32_t getColumnSize();

@@ -19,6 +19,10 @@ Matrix<T>::Matrix(const uint32_t column_size, const uint32_t row_size, const std
 }
 
 template<class T>
+Matrix<T>::~Matrix() {
+}
+
+template<class T>
 Matrix<T>::Matrix(const Matrix<T>& rhs) {
     assert(column_size == rhs.column_size);
     assert(row_size == rhs.row_size);
@@ -66,10 +70,6 @@ Matrix<T>& Matrix<T>::operator=(Matrix<T>&& rhs) {
 }
 
 template<class T>
-Matrix<T>::~Matrix() {
-}
-
-template<class T>
 const uint32_t Matrix<T>::getColumnSize() {
     return column_size;  
 }
@@ -86,15 +86,15 @@ const std::vector<T> Matrix<T>::getData() {
 
 template<class T>
 void Matrix<T>::setValueByIndex(const uint32_t column_index, const uint32_t row_index, const T value) {
-    assert((column_index < 0U) && (column_index > column_size - 1U));
-    assert((row_index < 0U) && (row_index > row_size - 1U));
+    assert((column_index >= 0U) && (column_index <= (column_size - 1U)));
+    assert((row_index >= 0U) && (row_index <= (row_size - 1U)));
     data[(row_index * column_size) + column_index] = value;
 }
 
 template<class T>
 const T Matrix<T>::getValueByIndex(const uint32_t column_index, const uint32_t row_index) {
-    assert((column_index < 0U) && (column_index > column_size - 1U));
-    assert((row_index < 0U) && (row_index > row_size - 1U));
+    assert((column_index >= 0U) && (column_index <= (column_size - 1U)));
+    assert((row_index >= 0U) && (row_index <= (row_size - 1U)));
     return data[(row_index * column_size) + column_index];
 }
 

@@ -33,6 +33,7 @@ add_executable (${PROJECT_NAME} ${SOURCE_FILES})
 # to the link interface and are not used for linking <target>.
 target_link_libraries (${PROJECT_NAME} PUBLIC gtest_main)
 target_link_libraries (${PROJECT_NAME} PUBLIC matrix)
+target_link_libraries (${PROJECT_NAME} PUBLIC singleton)
 
 include (GoogleTest)
 gtest_discover_tests (${PROJECT_NAME})

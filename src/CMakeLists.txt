@@ -5,6 +5,7 @@ project (main)
 set (CMAKE_VERBOSE_MAKEFILE ON)
 set (CMAKE_CXX_STANDARD 14)
 
+add_subdirectory (design_patterns/singleton)
 add_subdirectory (hello_world)
 add_subdirectory (matrix)
 

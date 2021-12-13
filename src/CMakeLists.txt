@@ -5,9 +5,10 @@ project (main)
 set (CMAKE_VERBOSE_MAKEFILE ON)
 set (CMAKE_CXX_STANDARD 14)
 
-add_subdirectory (design_patterns/singleton)
 add_subdirectory (hello_world)
 add_subdirectory (matrix)
+add_subdirectory (design_patterns/factory_method)
+add_subdirectory (design_patterns/singleton)
 
 # Adds an executable target called <name> to be built from the source files listed in the 
 # command invocation.
@@ -20,6 +21,8 @@ add_executable (${PROJECT_NAME} main.cpp)
 # to the link interface and are not used for linking <target>.
 target_link_libraries (${PROJECT_NAME} PUBLIC hello_world)
 target_link_libraries (${PROJECT_NAME} PUBLIC matrix)
+target_link_libraries (${PROJECT_NAME} PUBLIC factory_method)
+target_link_libraries (${PROJECT_NAME} PUBLIC singleton)
 
 # DESTINATION specifies the directory on disk to which a file will be installed. Arguments 
 # can be relative or absolute paths.

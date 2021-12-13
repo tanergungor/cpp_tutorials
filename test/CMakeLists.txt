@@ -34,6 +34,7 @@ add_executable (${PROJECT_NAME} ${SOURCE_FILES})
 target_link_libraries (${PROJECT_NAME} PUBLIC gtest_main)
 target_link_libraries (${PROJECT_NAME} PUBLIC matrix)
 target_link_libraries (${PROJECT_NAME} PUBLIC singleton)
+target_link_libraries (${PROJECT_NAME} PUBLIC factory_method)
 
 include (GoogleTest)
 gtest_discover_tests (${PROJECT_NAME})
